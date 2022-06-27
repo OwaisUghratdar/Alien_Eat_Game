@@ -1,0 +1,31 @@
+
+WIDTH = 500
+HEIGHT = 500
+import random
+
+alien = Actor('alien')
+alien.pos = 100, 56
+box = Rect((30, 30), (30, 30))
+score = 0
+
+def draw():
+    screen.fill((148, 0, 211))
+    screen.draw.filled_rect(box, "green")
+    alien.draw()
+
+def update():
+    global score
+    if keyboard.right:
+        alien.x = alien.x + 3
+    elif keyboard.left:
+        alien.x = alien.x - 3
+    elif keyboard.up:
+        alien.y = alien.y - 3
+    elif keyboard.down:
+        alien.y = alien.y + 3
+
+    if alien.colliderect(box):
+        box.x = random.randint(0, WIDTH)
+        box.y = random.randint(0, HEIGHT)
+        score = score + 1
+        print("Your score is:", score)
